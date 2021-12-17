@@ -10,7 +10,7 @@ import AppContext from './context/_appContext';
  // eslint-disable-next-line
 import {storage} from './firebase'
  // eslint-disable-next-line
-import ThreeModel from './pages/Model';
+import Model from './pages/Model';
 function App() {
    // eslint-disable-next-line
   const {files,setFiles,loading,setLoading} = React.useContext(AppContext);
@@ -71,7 +71,7 @@ function App() {
             path="/item/:id"
             render={(props) => {
               const id = props.match.params.id;
-              return <ThreeModel id={id && id} />;
+              return <Model id={id && id} />;
             }}
            
           />

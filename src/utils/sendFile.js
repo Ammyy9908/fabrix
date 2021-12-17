@@ -2,7 +2,7 @@ import axios from 'axios';
 const sendFiles = async (name,url)=>{
 
     try{
-        const r = await axios.post('https://fabricbackend.herokuapp.com/api/file/new',{
+        const r = await axios.post('https://fabricbackend.herokuapp.com/api/new',{
             label:name,
             url
         });

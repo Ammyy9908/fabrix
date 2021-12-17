@@ -1,0 +1,39 @@
+.alert{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 8px;
+    padding-right: 8px;
+    width: 287px;
+    visibility: hidden;
+    height: 65px;
+    position:absolute;
+    right: -350px;
+    top: 85px;
+    color: #fff;
+    border-radius: 5px;
+    background-color: rgba(15, 36, 230, 0.74);
+    
+    align-items: center;
+    justify-content: center;
+    transition: all .3s ease-in-out;
+}
+.alert_enable{
+    right: 35px;
+    display: flex;
+    visibility: visible;
+}
+
+.alert-close{
+    width:32px;
+    height: 32px;
+    position: absolute;
+    right: 10px;
+    top: -10px;
+    border-radius: 50%;
+    background-color: rgb(15, 255, 243);
+    border: 1px solid transparent;
+}
+
+.alert span{
+    font-weight: 700;
+}

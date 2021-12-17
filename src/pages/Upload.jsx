@@ -5,10 +5,12 @@ import "./Upload.css"
 import AppContext from '../context/_appContext';
 import firebase from 'firebase'
 import sendFiles from '../utils/sendFile'
+import AlertPopup from '../components/Alert/Alert';
 function Upload() {
     const {files,setFiles} = React.useContext(AppContext);
     const [progress,setProgress] = React.useState(0);
     const [loading,setLoading] = React.useState(false);
+    const [message,setMessage] = React.useState(null);
     const uploadToFirebase = (name,file)=>{
         setLoading(true);
         var storageRef = firebase.storage().ref();
@@ -25,7 +27,7 @@ function Upload() {
         },
         (error) => {
             // Handle unsuccessful uploads
-            console.error(error)
+            setMessage(error.message);
           },
           () => {
             // Handle successful uploads on complete
@@ -39,6 +41,7 @@ function Upload() {
                   setFiles([...files,file]);
                   setProgress(0);
                     setLoading(false);
+                    setMessage('Uploading done!')
               }).catch((error)=>{
                   console.log(error);
               })
@@ -57,14 +60,12 @@ function Upload() {
         const {type} = file;
         const isGLB = name.includes("glb");
         if(!isGLB){
-            return alert("Make sure You selected a GLB file.")
+            return setMessage('Invalid File Type! Choose an GLB file!')
         }
 
         // const allowed = ['image/png','image/jpeg','image/jpg'];
         
-        if(size>2000000){
-            return alert("Large file!");
-        }
+       
 
         const reader = new FileReader();
 
@@ -92,6 +93,7 @@ function Upload() {
     return (
         <div>
             <Navbar/>
+            <AlertPopup message={message} setMessage={setMessage}/>
             <section className='upload_section'>
                 <div className='upload_form'>
                    <label for="file" className='upload_input'>
